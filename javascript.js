@@ -52,7 +52,7 @@ do {
           
     }
 
-    let computerChoice = "Rock";
+    let computerChoice = getComputerOutput();
     let playerInput = getPlayerInput();
 
     console.log(playRound(computerChoice, playerInput));

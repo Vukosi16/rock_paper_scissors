@@ -13,86 +13,78 @@ function getComputerOutput(){
     return computerChoice;
 }
 
-    // function getPlayerInput() {
-    //     let browserInput = prompt("Enter your item: ");       
-    //     let playerInput = browserInput[0].toUpperCase() + browserInput.toLowerCase().slice(1);
-    //     return playerInput;
-    // }
 
     function playRound(computerChoice, playerInput) {
 
+        let resultdiv = document.querySelector('div');
+
         if (playerInput == computerChoice) {
-            console.log("Tie!");
-            ties++;
+          resultdiv.textContent = 'Tie!';
+          ties++;
         } else if (computerChoice == "rock") {
             if (playerInput == "scissors") {
-                console.log(`Lose! ${computerChoice} beats ${playerInput}`);
-                computerWin++;
+              resultdiv.textContent = `Lose! ${computerChoice} beats ${playerInput}`;
+              computerWin++;
             } else if (playerInput == "paper") {
-                console.log(`Win! ${playerInput} beats ${computerChoice}`);
-                playerWin++;
+              resultdiv.textContent = `Win! ${playerInput} beats ${computerChoice}`;
+              playerWin++;
             }
 
         } else if (computerChoice == "paper") {
             if (playerInput == "rock") {
-                console.log(`Lose! ${computerChoice} beats ${playerInput}`)
-                computerWin++;
+              resultdiv.textContent =`Lose! ${computerChoice} beats ${playerInput}`;
+              computerWin++;
             } else if (playerInput == "scissors") {
-                console.log(`Win! ${playerInput} beats ${computerChoice}`)
-                playerWin++;
+              resultdiv.textContent = `Win! ${playerInput} beats ${computerChoice}`;
+              playerWin++;
             }
 
         } else if (computerChoice == "scissors") {
             if (playerInput == "paper") {
-                console.log(`Lose! ${computerChoice} beats ${playerInput}`)
-                computerWin++;
+              resultdiv.textContent = `Lose! ${computerChoice} beats ${playerInput}`;
+              computerWin++;
             } else if (playerInput == "rock") {
-                console.log(`Win! ${playerInput} beats ${computerChoice}`)
+                resultdiv.textContent = `Win! ${playerInput} beats ${computerChoice}`;
                 playerWin++;
             }
         }
 
-        console.log(`Player wins:${playerWin}`);
-        console.log(`Computer wins:${computerWin}`);
-        console.log(`Ties:${ties}`);
+        let winCount = document.querySelector('.win-count');
+        let loseCount = document.querySelector('.lose-count');
+        let tieCount = document.querySelector('.tie-count');
+
+        winCount.textContent = `Player wins:${playerWin}`;
+        loseCount.textContent = `Computer wins:${computerWin}`;
+        tieCount.textContent = `Ties:${ties}`;
+
         return playerWin, computerWin;  
     }
+
+    
 
 
 
 function game() { 
-    for (let i = 0; i < 5; i++) {
+        let rock = document.querySelector('.rock-selection');
+        let paper = document.querySelector('.paper-selection');
+        let scissors = document.querySelector('.scissors-selection');
   
-      let playerInput = prompt(
-        "Choose rock, paper, or scissors"
-      ).toLowerCase();
+        rock.addEventListener('click', () => playRound(getComputerOutput(), 'rock'));
+        paper.addEventListener('click', () => playRound(getComputerOutput(), 'paper'));
+        scissors.addEventListener('click', () => playRound(getComputerOutput(), 'scissors'));
 
-      let computerInput = getComputerOutput();
   
-      while (
-        playerInput !== "rock" &&
-        playerInput !== "paper" &&
-        playerInput !== "scissors"
-      ) {
-        playerInput = prompt(
-          "Choose a valid input: rock, paper, or scissors"
-        ).toLowerCase();
-      }
-  
-      playRound(computerInput, playerInput);
-      
-    }
+    let finalResult =  document.querySelector('.final-result');
 
-    if (playerWin > computerWin) {
-        console.log(
+    
+    if (playerWin = 5) {
+        finalResult.textContent = 
           `Congrats! You beat the computer ${playerWin} out of 5 rounds!`
-        );
-      } else if (computerWin > playerWin){
-        console.log(
+        ;
+      } else if (computerWin = 5){
+        finalResult.textContent =
           `Oh no, the computer beat you ${computerWin} out of 5 rounds...`
-        );
-      } else {
-        console.log("You\'ve tied")
+        ;
       }
 }
 
